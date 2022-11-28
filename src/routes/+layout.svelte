@@ -22,6 +22,10 @@
 	]
 </script>
 
+<svelte:head>
+	<title>Cibus</title>
+</svelte:head>
+
 <AppLayout {links}>
 	<slot />
 </AppLayout>

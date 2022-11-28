@@ -39,28 +39,51 @@
 </main>
 
 <style lang="scss">
+	@use '../../styles/mixins' as m;
+	
 	:global(body) {
 		display: grid;
-		grid-template-columns: auto 1fr;
+		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
-		height: 100vh;
 	}
+
 	.navbar {
-		grid-column-start: 1;
-		grid-column-end: 3;
 		grid-row-start: 1;
 		grid-row-end: 2;
 	}
-	.sidebar {
-		grid-column-start: 1;
-		grid-column-end: 2;
+	main {
 		grid-row-start: 2;
 		grid-row-end: 3;
 	}
-	main {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 2;
-		grid-row-end: 3;
+	.sidebar {
+		visibility: collapse;
+		margin-left: -300px;
+		transition: all ease-in-out 0.2s;
+	}
+
+	@include m.break(md) {
+		:global(body) {
+			grid-template-columns: auto 1fr;
+		}
+		.navbar {
+			grid-column-start: 1;
+			grid-column-end: 3;
+			.navbar__btn-menu {
+				visibility: collapse;
+			}
+		}
+		
+		main {
+			grid-column-start: 2;
+			grid-column-end: 3;
+		}
+		.sidebar {
+			grid-row-start: 2;
+			grid-row-end: 3;
+			grid-column-start: 1;
+			grid-column-end: 2;
+			visibility: visible;
+			margin-left: 0;
+		}
 	}
 </style>

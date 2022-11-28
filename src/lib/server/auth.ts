@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 export async function hashPassword(password: string): Promise<string> {
-	return await bcrypt.hash(password, String(HASH_SALT))
+	return await bcrypt.hash(password, Number(HASH_SALT))
 }
 
 export async function comparePassword(password: string, hash: string): Promise<boolean> {
