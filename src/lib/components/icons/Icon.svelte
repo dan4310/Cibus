@@ -3,7 +3,8 @@
 		Cookbook = 'cookbook',
 		Hamburger = 'hamburger',
 		Home = 'home',
-		Recipe = 'recipe'
+		Recipe = 'recipe',
+		Search = 'search'
 	}
 	export type IconTypeStrings = keyof typeof IconTypes
 </script>
@@ -13,6 +14,7 @@
 	import HamburgerIcon from './HamburgerIcon.svelte'
 	import HomeIcon from './HomeIcon.svelte'
 	import RecipeIcon from './RecipeIcon.svelte'
+	import SearchIcon from './SearchIcon.svelte'
 
 	export let type: IconTypes
 </script>
@@ -25,4 +27,6 @@
 	<HomeIcon />
 {:else if type === IconTypes.Recipe}
 	<RecipeIcon />
+{:else if type === IconTypes.Search}
+	<SearchIcon />
 {/if}

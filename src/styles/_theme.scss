@@ -1,16 +1,16 @@
 :root {
-	--color-foreground: #{darken(white, 30)};
+	--color-foreground: #{darken(white, 10)};
 	--color-background: #{darken(white, 0)};
-	--color-divider: #{darken(white, 40)};
+	--color-divider: #{darken(white, 15)};
 	--color-text: #{lighten(black, 20)};
 	--color-text-muted: #{lighten(black, 40)};
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--color-foreground: #{lighten(black, 30)};
+		--color-foreground: #{lighten(black, 10)};
 		--color-background: #{lighten(black, 0)};
-		--color-divider: #{lighten(black, 40)};
+		--color-divider: #{lighten(black, 15)};
 		--color-text: #{darken(white, 20)};
 		--color-text-muted: #{darken(white, 20)};
 	}

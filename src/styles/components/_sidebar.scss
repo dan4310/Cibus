@@ -1,6 +1,7 @@
 @use '$styles/variables' as var;
 
 .sidebar {
+	padding: var.$padding-6;
 	svg {
 		fill: inherit;
 		color: inherit;
@@ -11,8 +12,9 @@
 			a {
 				display: flex;
 				align-items: center;
+				gap: var.$padding-6;
 				svg {
-					width: 40px;
+					width: 25px;
 				}
 			}
 		}
