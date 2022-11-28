@@ -3,21 +3,32 @@
 .sidebar {
 	padding: var.$padding-6;
 	background-color: var.$theme-background;
+	font-size: var.$font-size-5;
+	display: flex;
+	flex-direction: column;
+	gap: var.$padding-6;
 	svg {
 		fill: inherit;
 		color: inherit;
 	}
 
 	ul {
+		display: flex;
+		flex-direction: column;
+		gap: var.$padding-6;
 		li {
 			a {
 				display: flex;
 				align-items: center;
 				gap: var.$padding-6;
 				svg {
-					width: 25px;
+					width: 20px;
 				}
 			}
 		}
+	}
+
+	.sidebar__link.active {
+		background-color: var.$theme-foreground;
 	}
 }

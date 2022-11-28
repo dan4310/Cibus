@@ -1,0 +1,12 @@
+@use '$styles/variables' as var;
+@use '$styles/mixins' as m;
+
+.form-control {
+	background-color: transparent;
+	padding: var.$padding-6;
+	color: inherit;
+	border-radius: var.$border-radius;
+	border: var.$border-thickness solid var.$theme-divider;
+	transition: box-shadow ease-in-out 0.2s;
+	@include m.focus(var.$color-primary);
+}

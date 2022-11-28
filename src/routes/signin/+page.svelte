@@ -4,24 +4,23 @@
 	export let form: ActionData
 </script>
 
-<div class="signup-form">
-	<h1>Sign Up</h1>
+<div class="login-form">
+	<h1>Sign In</h1>
 	{#if form?.message}
-		<p class="error-message">{form.message}</p>
+		<p class="error-message">{form?.message}</p>
 	{/if}
 	<form method="POST">
 		<input class="form-control" placeholder="Username" name="username" type="text" />
-		<input class="form-control" placeholder="Email" name="email" type="email" />
 		<input class="form-control" placeholder="Password" name="password" type="password" />
-		<button class="btn-primary" type="submit">Sign Up</button>
-		<span>Already have an account? Sign up <a href="/signin">here.</a></span>
+		<button class="btn-primary" type="submit">Sign In</button>
+		<span>Don't have an account? Sign up <a href="/signup">here.</a></span>
 	</form>
 </div>
 
 <style lang="scss">
 	@use '../../styles/variables' as var;
 
-	.signup-form {
+	.login-form {
 		display: flex;
 		flex-direction: column;
 		gap: var.$padding;

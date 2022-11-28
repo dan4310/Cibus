@@ -10,6 +10,13 @@
 	import HamburgerIcon from './icons/HamburgerIcon.svelte'
 	import Icon, { type IconTypes } from './icons/Icon.svelte'
 	import SearchBar from './SearchBar.svelte'
+	import { page } from '$app/stores'
+	import AvatarIcon from './icons/AvatarIcon.svelte'
+	import UserIcon from './icons/UserIcon.svelte'
+	import SettingsIcon from './icons/SettingsIcon.svelte'
+
+	$: user = $page.data?.loggedInUser
+	$: currentPath = $page.url.pathname
 	export let links: NavLink[]
 </script>
 
@@ -24,20 +31,41 @@
 	<SearchBar />
 
 	<div class="navbar__right">
-		<a class="btn-outline-primary" href="/login">Login</a>
+		{#if !user}
+			<a class="btn-outline-primary" href="/signin">Login</a>
+		{:else}
+			<AvatarIcon username={user.username} />
+		{/if}
 	</div>
 </header>
 <aside class="sidebar">
 	<ul>
 		{#each links as link (link.name)}
-			<li class="btn">
-				<a href={link.href} class="sidebar__link">
+			<li>
+				<a href={link.href} class="sidebar__link btn" class:active={currentPath === link.href}>
 					<Icon type={link.icon} />
 					<span>{link.name}</span>
 				</a>
 			</li>
 		{/each}
 	</ul>
+	{#if user}
+		<hr />
+		<ul>
+			<li>
+				<a href="/{user.username}" class="sidebar__link btn">
+					<UserIcon />
+					<span>Profile</span>
+				</a>
+			</li>
+			<li>
+				<a href="/settings" class="sidebar__link btn">
+					<SettingsIcon />
+					<span>Settings</span>
+				</a>
+			</li>
+		</ul>
+	{/if}
 </aside>
 <main>
 	<slot />
@@ -46,7 +74,7 @@
 <style lang="scss">
 	@use '../../styles/mixins' as m;
 	@use '../../styles/variables' as var;
-	
+
 	:global(body) {
 		display: grid;
 		grid-template-columns: auto 1fr;
@@ -62,6 +90,7 @@
 		grid-column-start: 1;
 		grid-column-end: 3;
 		position: sticky;
+		box-sizing: border-box;
 		top: 0;
 	}
 	main {
@@ -78,6 +107,7 @@
 		grid-row-end: 3;
 		grid-column-start: 1;
 		grid-column-end: 2;
+		box-sizing: border-box;
 		visibility: collapse;
 		margin-left: -300px;
 		transition: all ease-in-out 0.2s;
@@ -94,7 +124,7 @@
 				visibility: collapse;
 			}
 		}
-		
+
 		main {
 			grid-column-start: 2;
 			grid-column-end: 3;
