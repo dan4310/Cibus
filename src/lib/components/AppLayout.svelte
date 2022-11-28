@@ -45,10 +45,11 @@
 
 <style lang="scss">
 	@use '../../styles/mixins' as m;
+	@use '../../styles/variables' as var;
 	
 	:global(body) {
 		display: grid;
-		grid-template-columns: 1fr;
+		grid-template-columns: auto 1fr;
 		grid-template-rows: auto 1fr;
 		min-height: 100vh;
 		position: relative;
@@ -58,27 +59,34 @@
 	.navbar {
 		grid-row-start: 1;
 		grid-row-end: 2;
+		grid-column-start: 1;
+		grid-column-end: 3;
 		position: sticky;
 		top: 0;
 	}
 	main {
 		grid-row-start: 2;
 		grid-row-end: 3;
+		grid-column-start: 1;
+		grid-column-end: 3;
 		width: 100%;
+		padding: var.$padding-6;
+		box-sizing: border-box;
 	}
 	.sidebar {
+		grid-row-start: 1;
+		grid-row-end: 3;
+		grid-column-start: 1;
+		grid-column-end: 2;
 		visibility: collapse;
 		margin-left: -300px;
 		transition: all ease-in-out 0.2s;
 		position: sticky;
 		top: 0;
-		height: 50vh;
+		height: 100vh;
 	}
 
 	@include m.break(md) {
-		:global(body) {
-			grid-template-columns: auto 1fr;
-		}
 		.navbar {
 			grid-column-start: 2;
 			grid-column-end: 3;
@@ -92,10 +100,6 @@
 			grid-column-end: 3;
 		}
 		.sidebar {
-			grid-row-start: 1;
-			grid-row-end: 3;
-			grid-column-start: 1;
-			grid-column-end: 2;
 			visibility: visible;
 			margin-left: 0;
 		}
