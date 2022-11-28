@@ -1,0 +1,6 @@
+@use 'variables' as var;
+
+body {
+	color: var.$theme-text;
+	background-color: var.$theme-background;
+}

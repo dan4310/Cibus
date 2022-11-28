@@ -1,0 +1,16 @@
+$color-primary: red;
+
+$theme-foreground: var(--color-foreground);
+$theme-background: var(--color-background);
+$theme-divider: var(--color-divider);
+$theme-text: var(--color-text);
+$theme-text-muted: var(--color-text-muted);
+
+$breakpoints: (
+	'xs': 570px,
+	'sm': 570px,
+	'md': 768px,
+	'lg': 992px,
+	'xl': 1200px,
+	'xxl': 1400px
+);

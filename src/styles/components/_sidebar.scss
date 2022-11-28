@@ -1,0 +1,20 @@
+@use '$styles/variables' as var;
+
+.sidebar {
+	svg {
+		fill: inherit;
+		color: inherit;
+	}
+
+	ul {
+		li {
+			a {
+				display: flex;
+				align-items: center;
+				svg {
+					width: 40px;
+				}
+			}
+		}
+	}
+}

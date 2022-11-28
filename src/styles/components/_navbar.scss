@@ -1,0 +1,16 @@
+@use '$styles/variables' as var;
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.navbar__btn-menu {
+		width: 40px;
+	}
+
+	&__right,
+	&__left {
+		display: flex;
+		align-items: center;
+	}
+}
