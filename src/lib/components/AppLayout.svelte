@@ -25,14 +25,14 @@
 
 <header class="navbar">
 	<div class="navbar__left">
-		<button
-			type="button"
-			class="btn-round btn-sidebar"
-			on:click={() => (isSidebarOpen = !isSidebarOpen)}
+		<button type="button" class="btn-round btn-sidebar"
+			on:click={() => isSidebarOpen = !isSidebarOpen}
 		>
 			<HamburgerIcon />
 		</button>
-		<button type="button" class="btn-round btn-drawer" on:click={() => (isDrawerOpen = true)}>
+		<button type="button" class="btn-round btn-drawer"
+			on:click={() => isDrawerOpen = true}
+		>
 			<HamburgerIcon />
 		</button>
 		<a href="/"><h3>Cibus</h3></a>
@@ -94,8 +94,7 @@
 		overflow-y: scroll;
 	}
 
-	.btn-sidebar,
-	.btn-drawer {
+	.btn-sidebar, .btn-drawer {
 		width: 40px;
 	}
 
@@ -141,7 +140,6 @@
 		transition: all ease-in-out 0.2s;
 		position: sticky;
 		top: 0;
-		height: 100vh;
 
 		&.closed {
 			visibility: collapse;
