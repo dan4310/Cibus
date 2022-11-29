@@ -11,10 +11,10 @@
 	import Icon, { type IconTypes } from './icons/Icon.svelte'
 	import SearchBar from './SearchBar.svelte'
 	import { page } from '$app/stores'
-	import AvatarIcon from './icons/AvatarIcon.svelte'
 	import UserIcon from './icons/UserIcon.svelte'
 	import SettingsIcon from './icons/SettingsIcon.svelte'
 	import Drawer from './Drawer.svelte'
+	import UserMenu from './UserMenu.svelte'
 
 	$: user = $page.data?.loggedInUser
 	$: currentPath = $page.url.pathname
@@ -26,14 +26,14 @@
 
 <header class="navbar">
 	<div class="navbar__left">
-		<button type="button" class="btn-round btn-sidebar"
-			on:click={() => isSidebarOpen = !isSidebarOpen}
+		<button
+			type="button"
+			class="btn-round btn-sidebar"
+			on:click={() => (isSidebarOpen = !isSidebarOpen)}
 		>
 			<HamburgerIcon />
 		</button>
-		<button type="button" class="btn-round btn-drawer"
-			on:click={() => isDrawerOpen = true}
-		>
+		<button type="button" class="btn-round btn-drawer" on:click={() => (isDrawerOpen = true)}>
 			<HamburgerIcon />
 		</button>
 		<a href="/"><h3>Cibus</h3></a>
@@ -45,7 +45,7 @@
 		{#if !user}
 			<a class="btn-outline-primary" href="/signin">Login</a>
 		{:else}
-			<AvatarIcon username={user.username} />
+			<UserMenu {user} />
 		{/if}
 	</div>
 </header>
@@ -81,7 +81,7 @@
 <main>
 	<slot />
 </main>
-<Drawer open={isDrawerOpen} on:close={() => isDrawerOpen = false}>
+<Drawer open={isDrawerOpen} on:close={() => (isDrawerOpen = false)}>
 	<aside class="sidebar" class:closed={isSidebarOpen == false}>
 		<ul>
 			{#each links as link (link.name)}
@@ -126,7 +126,8 @@
 		overflow-y: scroll;
 	}
 
-	.btn-sidebar, .btn-drawer {
+	.btn-sidebar,
+	.btn-drawer {
 		width: 40px;
 	}
 

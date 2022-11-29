@@ -14,7 +14,6 @@
 
 @mixin focus($color: var.$color-primary) {
 	&:focus {
-		@debug ('box-shadow: 0 0 6px rgba(#{$color}, 0.5)');
 		box-shadow: 0 0 0 4px rgba($color, 0.5);
 		outline: var.$border-thickness solid $color;
 	}

@@ -10,3 +10,7 @@ hr {
 	color: var.$theme-divider;
 	border-width: 1px;
 }
+
+svg {
+	width: var(--svg-width);
+}
