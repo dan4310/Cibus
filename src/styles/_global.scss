@@ -5,3 +5,8 @@ body {
 	background-color: var.$theme-background;
 	font-size: var.$font-size-5;
 }
+
+hr {
+	color: var.$theme-divider;
+	border-width: 1px;
+}

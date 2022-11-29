@@ -15,4 +15,51 @@ model User {
   email String @unique
   password String
   username String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  recipes Recipe[]
+}
+
+model Recipe {
+  id String @id @default(uuid())
+  title String
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ingredients Ingredient[]
+  
+  authorId String
+  author User @relation(fields: [authorId], references: [id])
+
+  @@unique([authorId, title], name: "title_authorId_unique_constraint")
+}
+
+model Ingredient {
+  id String @id @default(uuid())
+  name String
+  quantity Float
+  quantityType QuantityType @default(CUP)
+  modifier String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  recipeId String
+  recipe Recipe @relation(fields: [recipeId], references: [id])
+}
+
+enum QuantityType {
+  TSP
+  TBSP
+  FLOZ
+  CUP
+  PINT
+  QUART
+  GALLON
+  OZ
+  LB
 }
