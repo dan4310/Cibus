@@ -18,11 +18,21 @@
 	$: user = $page.data?.loggedInUser
 	$: currentPath = $page.url.pathname
 	export let links: NavLink[]
+
+	let isSidebarOpen = true
+	let isDrawerOpen = false
 </script>
 
 <header class="navbar">
 	<div class="navbar__left">
-		<button type="button" class="btn-round navbar__btn-menu">
+		<button
+			type="button"
+			class="btn-round btn-sidebar"
+			on:click={() => (isSidebarOpen = !isSidebarOpen)}
+		>
+			<HamburgerIcon />
+		</button>
+		<button type="button" class="btn-round btn-drawer" on:click={() => (isDrawerOpen = true)}>
 			<HamburgerIcon />
 		</button>
 		<a href="/"><h3>Cibus</h3></a>
@@ -38,7 +48,7 @@
 		{/if}
 	</div>
 </header>
-<aside class="sidebar">
+<aside class="sidebar" class:closed={isSidebarOpen == false}>
 	<ul>
 		{#each links as link (link.name)}
 			<li>
@@ -84,6 +94,24 @@
 		overflow-y: scroll;
 	}
 
+	.btn-sidebar,
+	.btn-drawer {
+		width: 40px;
+	}
+
+	.btn-sidebar {
+		display: none;
+	}
+
+	@include m.break(md) {
+		.btn-sidebar {
+			display: flex;
+		}
+		.btn-drawer {
+			display: none;
+		}
+	}
+
 	.navbar {
 		grid-row-start: 1;
 		grid-row-end: 2;
@@ -103,7 +131,7 @@
 		box-sizing: border-box;
 	}
 	.sidebar {
-		grid-row-start: 1;
+		grid-row-start: 2;
 		grid-row-end: 3;
 		grid-column-start: 1;
 		grid-column-end: 2;
@@ -114,17 +142,14 @@
 		position: sticky;
 		top: 0;
 		height: 100vh;
+
+		&.closed {
+			visibility: collapse;
+			margin-left: -300px;
+		}
 	}
 
 	@include m.break(md) {
-		.navbar {
-			grid-column-start: 2;
-			grid-column-end: 3;
-			.navbar__btn-menu {
-				visibility: collapse;
-			}
-		}
-
 		main {
 			grid-column-start: 2;
 			grid-column-end: 3;

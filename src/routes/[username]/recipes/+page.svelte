@@ -10,7 +10,7 @@
 	<form method="POST">
 		<input class="form-control" name="title" placeholder="Title" required />
 		<input class="form-control" name="description" placeholder="Description" />
-		<button type="submit" class="btn-outline-primary">Create Recipe</button>
+		<button type="submit" name="image" class="btn-outline-primary">Create Recipe</button>
 	</form>
 {/if}
 
