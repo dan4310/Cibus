@@ -14,6 +14,7 @@
 	import AvatarIcon from './icons/AvatarIcon.svelte'
 	import UserIcon from './icons/UserIcon.svelte'
 	import SettingsIcon from './icons/SettingsIcon.svelte'
+	import Drawer from './Drawer.svelte'
 
 	$: user = $page.data?.loggedInUser
 	$: currentPath = $page.url.pathname
@@ -48,7 +49,7 @@
 		{/if}
 	</div>
 </header>
-<aside class="sidebar" class:closed={isSidebarOpen == false}>
+<aside class="sidebar-page sidebar" class:closed={isSidebarOpen == false}>
 	<ul>
 		{#each links as link (link.name)}
 			<li>
@@ -80,6 +81,37 @@
 <main>
 	<slot />
 </main>
+<Drawer open={isDrawerOpen} on:close={() => isDrawerOpen = false}>
+	<aside class="sidebar" class:closed={isSidebarOpen == false}>
+		<ul>
+			{#each links as link (link.name)}
+				<li>
+					<a href={link.href} class="sidebar__link btn" class:active={currentPath === link.href}>
+						<Icon type={link.icon} />
+						<span>{link.name}</span>
+					</a>
+				</li>
+			{/each}
+		</ul>
+		{#if user}
+			<hr />
+			<ul>
+				<li>
+					<a href="/{user.username}" class="sidebar__link btn">
+						<UserIcon />
+						<span>Profile</span>
+					</a>
+				</li>
+				<li>
+					<a href="/settings" class="sidebar__link btn">
+						<SettingsIcon />
+						<span>Settings</span>
+					</a>
+				</li>
+			</ul>
+		{/if}
+	</aside>
+</Drawer>
 
 <style lang="scss">
 	@use '../../styles/mixins' as m;
@@ -129,21 +161,21 @@
 		padding: var.$padding-6;
 		box-sizing: border-box;
 	}
-	.sidebar {
+	.sidebar-page {
 		grid-row-start: 2;
 		grid-row-end: 3;
 		grid-column-start: 1;
 		grid-column-end: 2;
 		box-sizing: border-box;
 		visibility: collapse;
-		margin-left: -300px;
+		margin-left: -200px;
 		transition: all ease-in-out 0.2s;
 		position: sticky;
 		top: 0;
 
 		&.closed {
 			visibility: collapse;
-			margin-left: -300px;
+			margin-left: -200px;
 		}
 	}
 
@@ -152,7 +184,7 @@
 			grid-column-start: 2;
 			grid-column-end: 3;
 		}
-		.sidebar {
+		.sidebar-page {
 			visibility: visible;
 			margin-left: 0;
 		}
